@@ -83,4 +83,3 @@ const Sidebar = ({ storageKey = 't-sidebar-state' }: SidebarProps) => {
 };
 
 export default Sidebar;
-// https://youtu.be/pRybm9lXW2c?t=8581

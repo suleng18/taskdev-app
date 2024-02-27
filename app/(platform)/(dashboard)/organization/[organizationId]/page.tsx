@@ -1,4 +1,7 @@
-import { OrganizationSwitcher, auth } from '@clerk/nextjs';
+import { create } from '@/actions/create-board';
+import { db } from '@/lib/db';
+import { auth } from '@clerk/nextjs';
+
 import React from 'react';
 
 const OrganizationIdPage = () => {
@@ -6,8 +9,9 @@ const OrganizationIdPage = () => {
 
   return (
     <div>
-      {/* <OrganizationSwitcher hidePersonal /> */}
-      OrganizationIdPage
+      <form action={create}>
+        <input id="title" name="title" required placeholder="Enter a board title" className="border-black border p-1" />
+      </form>
     </div>
   );
 };
