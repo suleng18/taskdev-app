@@ -1,17 +1,15 @@
-import { create } from '@/actions/create-board';
-import { db } from '@/lib/db';
-import { auth } from '@clerk/nextjs';
-
-import React from 'react';
+import { Separator } from '@/components/ui/separator';
+import { BoardList } from './_components/board-list';
+import { Info } from './_components/info';
 
 const OrganizationIdPage = () => {
-  const { userId, orgId } = auth();
-
   return (
-    <div>
-      <form action={create}>
-        <input id="title" name="title" required placeholder="Enter a board title" className="border-black border p-1" />
-      </form>
+    <div className="w-full mb-20">
+      <Info isPro />
+      <Separator className="my-4" />
+      <div className="px-2 md:px-4">
+        <BoardList />
+      </div>
     </div>
   );
 };
