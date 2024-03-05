@@ -29,10 +29,9 @@ export const FormPopover = ({ children, side = 'bottom', align, sideOffset = 0 }
 
   const { execute, fieldErrors } = useAction(createBoard, {
     onSuccess: (data) => {
-      console.log('🚀 - data:', data);
       toast.success('Board created!');
-      // closeRef.current?.click();
-      // router.push(`/board/${data.id}`);
+      closeRef.current?.click();
+      router.push(`/board/${data.id}`);
     },
     onError: (error) => {
       toast.error(error);
