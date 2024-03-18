@@ -1,46 +1,44 @@
-"use client";
+'use client';
 
-import { toast } from "sonner";
-import { ElementRef, useRef, useState } from "react";
-import { Layout } from "lucide-react";
-import { useParams } from "next/navigation";
-import { useQueryClient } from "@tanstack/react-query";
+import { toast } from 'sonner';
+import { ElementRef, useRef, useState } from 'react';
+import { Layout } from 'lucide-react';
+import { useParams } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 
-import { CardWithList } from "@/types";
-import { useAction } from "@/hooks/use-action";
-import { updateCard } from "@/actions/update-card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { FormInput } from "@/components/form/form-input";
+import { CardWithList } from '@/types';
+import { useAction } from '@/hooks/use-action';
+import { updateCard } from '@/actions/update-card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { FormInput } from '@/components/form/form-input';
 
 interface HeaderProps {
   data: CardWithList;
 }
 
-export const Header = ({
-  data,
-}: HeaderProps) => {
+export const Header = ({ data }: HeaderProps) => {
   const queryClient = useQueryClient();
   const params = useParams();
 
   const { execute } = useAction(updateCard, {
     onSuccess: (data) => {
       queryClient.invalidateQueries({
-        queryKey: ["card", data.id]
+        queryKey: ['card', data.id],
       });
 
-      queryClient.invalidateQueries({
-        queryKey: ["card-logs", data.id]
-      });
+      // queryClient.invalidateQueries({
+      //   queryKey: ['card-logs', data.id],
+      // });
 
       toast.success(`Renamed to "${data.title}"`);
       setTitle(data.title);
     },
     onError: (error) => {
       toast.error(error);
-    }
+    },
   });
 
-  const inputRef = useRef<ElementRef<"input">>(null);
+  const inputRef = useRef<ElementRef<'input'>>(null);
 
   const [title, setTitle] = useState(data.title);
 
@@ -49,7 +47,7 @@ export const Header = ({
   };
 
   const onSubmit = (formData: FormData) => {
-    const title = formData.get("title") as string;
+    const title = formData.get('title') as string;
     const boardId = params.boardId as string;
 
     if (title === data.title) {
@@ -61,7 +59,7 @@ export const Header = ({
       boardId,
       id: data.id,
     });
-  }
+  };
 
   return (
     <div className="flex items-start gap-x-3 mb-6 w-full">
