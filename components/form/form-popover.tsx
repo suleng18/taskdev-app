@@ -9,11 +9,11 @@ import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from '@/compone
 import { useAction } from '@/hooks/use-action';
 import { Button } from '@/components/ui/button';
 import { createBoard } from '@/actions/create-board';
-// import { useProModal } from '@/hooks/use-pro-modal';
 
 import { FormInput } from './form-input';
 import { FormSubmit } from './form-submit';
 import { FormPicker } from './form-picker';
+import { useProModal } from '@/hooks/use-pro-modal';
 
 interface FormPopoverProps {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ interface FormPopoverProps {
 }
 
 export const FormPopover = ({ children, side = 'bottom', align, sideOffset = 0 }: FormPopoverProps) => {
-  // const proModal = useProModal();
+  const proModal = useProModal();
   const router = useRouter();
   const closeRef = useRef<ElementRef<'button'>>(null);
 
@@ -35,7 +35,7 @@ export const FormPopover = ({ children, side = 'bottom', align, sideOffset = 0 }
     },
     onError: (error) => {
       toast.error(error);
-      // proModal.onOpen();
+      proModal.onOpen();
     },
   });
 

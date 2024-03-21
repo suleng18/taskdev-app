@@ -11,7 +11,7 @@ import { useLocalStorage } from 'usehooks-ts';
 import NavItem, { Organization } from './nav-item';
 
 interface SidebarProps {
-  storageKey: string;
+  storageKey?: string;
 }
 
 const Sidebar = ({ storageKey = 't-sidebar-state' }: SidebarProps) => {

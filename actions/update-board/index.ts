@@ -34,12 +34,12 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       },
     });
 
-    // await createAuditLog({
-    //   entityTitle: board.title,
-    //   entityId: board.id,
-    //   entityType: ENTITY_TYPE.BOARD,
-    //   action: ACTION.UPDATE,
-    // })
+    await createAuditLog({
+      entityTitle: board.title,
+      entityId: board.id,
+      entityType: ENTITY_TYPE.BOARD,
+      action: ACTION.UPDATE,
+    });
   } catch (error) {
     return {
       error: 'Failed to update.',

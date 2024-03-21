@@ -53,12 +53,12 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       },
     });
 
-    // await createAuditLog({
-    //   entityTitle: list.title,
-    //   entityId: list.id,
-    //   entityType: ENTITY_TYPE.LIST,
-    //   action: ACTION.CREATE,
-    // })
+    await createAuditLog({
+      entityTitle: list.title,
+      entityId: list.id,
+      entityType: ENTITY_TYPE.LIST,
+      action: ACTION.CREATE,
+    });
   } catch (error) {
     return {
       error: 'Failed to create.',
